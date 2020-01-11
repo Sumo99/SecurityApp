@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SecurityApp</string>
+    <string name="cameraName">SecurityApp</string>
+    <string name="recordButtonName">SecurityApp</string>
+    <string name="ScreenshotButtonName">SecurityApp</string>
+
+</resources>
