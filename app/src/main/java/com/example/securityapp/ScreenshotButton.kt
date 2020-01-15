@@ -1,20 +1,20 @@
 package com.example.securityapp
 
-import java.util.*
 import android.graphics.Bitmap
 import android.os.Environment
-import android.os.Environment.getExternalStorageDirectory
 import android.util.Log
 import java.io.File
 import java.io.FileOutputStream
 import android.app.Activity
-import kotlinx.android.synthetic.main.activity_main.*
+import android.app.AlertDialog
+import android.content.DialogInterface
 import kotlinx.android.synthetic.main.activity_main.view.*
 
 
 class ScreenshotButton {
 
-    fun takeScreenshot(androidActivity: Activity){
+
+    fun takeScreenshot(androidActivity: Activity, s: String){
         val unixTime = System.currentTimeMillis() / 1000L
 
         try {
@@ -39,9 +39,27 @@ class ScreenshotButton {
         } catch (e: Throwable) {
             // Several error may come out with file handling or DOM
             Log.e("File saving error",e.toString())
+            alertUser(androidActivity);
         }
 
 
+    }
+
+    private fun alertUser(androidActivity: Activity) {
+        AlertDialog.Builder(androidActivity)
+            .setTitle("Could Not Save File")
+            .setMessage("Try again?")
+
+            // Specifying a listener allows you to take an action before dismissing the dialog.
+            // The dialog is automatically dismissed when a dialog button is clicked.
+            .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
+                takeScreenshot(androidActivity,""); //go for another spin
+            })
+
+            // A null listener allows the button to dismiss the dialog and take no further action.
+            .setNegativeButton("No", null)
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .show()
     }
 
 }

@@ -4,30 +4,34 @@ import android.Manifest
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.*;
-import android.graphics.*;
 import java.net.HttpURLConnection
 import java.net.URL
 import android.support.v4.app.ActivityCompat
-import android.webkit.WebViewClient
 import android.widget.Button
 import android.widget.ToggleButton
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity() {
+open class MainActivity : AppCompatActivity() {
 
-    private val securityCamUrl="/";
-    override fun onCreate(savedInstanceState: Bundle?) {
+    open val securityCamUrl="http://csr:motion12@192.168.1.12:8081/";
+    open val layoutUsed=R.layout.activity_main;
+    open val initialScaleCamera=140;
+
+    override fun onCreate(savedInstanceState: Bundle? ) {
+
         super.onCreate(savedInstanceState)
 
-       setContentView(R.layout.activity_main)
-       ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1);
+       setContentView(layoutUsed)
+
+        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1);
        //we need this to even save to the sd
         //   Id(R.id.recordButton) as ToggleButton;
         val recordButton=findViewById(R.id.recordButton) as ToggleButton;
         val screenshotButton=findViewById(R.id.screenshotButton) as Button;
 
-       recordButton.setOnCheckedChangeListener { _, isChecked ->
+
+        recordButton.setOnCheckedChangeListener { _, isChecked ->
            if (isChecked) {
                RecordButton().startRecording()
            } else {
@@ -37,26 +41,19 @@ class MainActivity : AppCompatActivity() {
        screenshotButton.setOnClickListener({
            screenshotButton()
        })
-       securityCamView.setInitialScale(140);
-       securityCamView.loadUrl(securityCamUrl)
-       securityCamView.setWebViewClient(
-           WebViewClient( )
-       )
+       securityCamView.setInitialScale(initialScaleCamera);
+        securityCamView.loadUrl(securityCamUrl)
+    }
 
-       val display = windowManager.defaultDisplay
-        val size = Point()
-        display.getSize(size)
-        val width = size.x
-        val height = size.y
-      //  loadUrl();
-        Log.e("Width", "" + width);
-        Log.e("height", "" + height)
+    override fun onResume() {
+        super.onResume()
+        Log.i("Resuming","Present")
     }
 
 
-
     fun screenshotButton(){
-        ScreenshotButton().takeScreenshot(this)
+        ScreenshotButton().takeScreenshot(this,"")
+
         Log.i("Button pressed","screenshot button")
     }
 

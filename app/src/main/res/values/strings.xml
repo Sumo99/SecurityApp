@@ -3,5 +3,6 @@
     <string name="cameraName">SecurityApp</string>
     <string name="recordButtonName">SecurityApp</string>
     <string name="ScreenshotButtonName">SecurityApp</string>
+    <string name="title_activity_home">home</string>
 
 </resources>
