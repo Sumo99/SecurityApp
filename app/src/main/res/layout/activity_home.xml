@@ -8,13 +8,50 @@
 
         android:layout_height="match_parent"
         tools:context=".home">
+
     <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" tools:layout_editor_absoluteY="0dp"
-            tools:layout_editor_absoluteX="33dp" android:id="@+id/scrollView">
-        <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
-                                                     android:layout_height="wrap_content"
-                                                     android:orientation="vertical">
+            android:layout_height="match_parent">
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <WebView
+                    android:layout_width="380dp"
+                    android:layout_height="300dp"
+                    android:layout_marginTop="32dp"
+                    app:layout_constraintTop_toBottomOf="@+id/ESPcamera" android:id="@+id/espCameraView"
+                    app:layout_constraintStart_toStartOf="parent"/>
+            <Button
+                    android:text="Esp Camera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="68dp"
+                    android:id="@+id/ESPcamera"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="150dp"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="72dp"
+                    app:layout_constraintTop_toBottomOf="@+id/securityCamView"/>
+            <Button
+                    android:text="Driveway"
+                    android:layout_width="wrap_content"
+                    android:layout_height="68dp"
+                    android:id="@+id/drivewayCamera"
+                    android:layout_marginBottom="68dp"
+                    app:layout_constraintBottom_toTopOf="@+id/ESPcamera"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="150dp" android:layout_marginTop="50dp"
+                    app:layout_constraintTop_toBottomOf="@+id/title"
+                    app:layout_constraintVertical_bias="0.01"
+                    />
+            <TextView
+                            android:text="    Select Camera"
+                            android:textSize="32dp"
+                            android:layout_width="295dp"
+                            android:layout_height="59dp"
+                            android:id="@+id/title" android:width="100px"
+                            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginTop="36dp" app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.461"/>
             <WebView
                     android:layout_width="380sp"
                     android:layout_height="300sp"
@@ -25,44 +62,10 @@
                     app:layout_constraintTop_toBottomOf="@+id/title" android:layout_marginBottom="8dp"
                     app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.071">
             </WebView>
-            <TextView
-                    android:text="    Select Camera"
-                    android:textSize="32dp"
-                    android:layout_width="295dp"
-                    android:layout_height="59dp"
-                    android:id="@+id/title" android:width="100px"
-                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginTop="36dp" app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.461"/>
-            <Button
-                    android:text="Driveway"
-                    android:layout_width="wrap_content"
-                    android:layout_height="68dp"
-                    android:id="@+id/drivewayCamera"
-                    android:layout_marginBottom="68dp"
-                    app:layout_constraintBottom_toTopOf="@+id/ESPcamera"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="148dp" android:layout_marginTop="50dp"
-                    app:layout_constraintTop_toBottomOf="@+id/title"
-                    app:layout_constraintVertical_bias="0.0"/>
-            <Button
-                    android:text="Esp Camera"
-                    android:layout_width="wrap_content"
-                    android:layout_height="68dp"
-                    android:id="@+id/ESPcamera"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="148dp"
-                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="64dp"
-                    app:layout_constraintTop_toBottomOf="@+id/securityCamView"/>
-            <WebView
-                    android:layout_width="380dp"
-                    android:layout_height="300dp"
-                    tools:layout_editor_absoluteX="0dp" android:layout_marginTop="20dp"
-                    app:layout_constraintTop_toBottomOf="@+id/ESPcamera" android:id="@+id/espCameraView"/>
-
         </android.support.constraint.ConstraintLayout>
-
     </ScrollView>
 
-
 </android.support.constraint.ConstraintLayout>
+
+
+

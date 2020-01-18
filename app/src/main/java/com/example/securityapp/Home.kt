@@ -1,8 +1,8 @@
 package com.example.securityapp
 
-import android.content.Intent;  
-import android.os.Bundle;  
-import android.support.v7.app.AppCompatActivity;  
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import kotlinx.android.synthetic.main.activity_home.*;
 
@@ -23,7 +23,11 @@ class home : AppCompatActivity() {
        })
         securityCamView.setInitialScale(140);
         securityCamView.loadUrl("http://csr:motion12@192.168.1.12:8081/")
-       espCameraView.setInitialScale(140);
-       espCameraView.loadUrl("http://192.168.5.10/motion")
+        espCameraView.setInitialScale(140);
+        espCameraView.webViewClient=MyWebViewClient(this);
+        espCameraView.getSettings().setDomStorageEnabled(true)
+        espCameraView.getSettings().setJavaScriptEnabled(true)
+        espCameraView.loadUrl("http://192.168.5.10/webcam")
+
     }
 }

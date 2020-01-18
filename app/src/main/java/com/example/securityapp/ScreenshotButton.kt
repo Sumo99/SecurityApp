@@ -8,13 +8,14 @@ import java.io.FileOutputStream
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.webkit.WebView
 import kotlinx.android.synthetic.main.activity_main.view.*
 
 
 class ScreenshotButton {
 
 
-    fun takeScreenshot(androidActivity: Activity, s: String){
+    fun takeScreenshot(androidActivity: Activity, webview: WebView){
         val unixTime = System.currentTimeMillis() / 1000L
 
         try {
@@ -22,7 +23,7 @@ class ScreenshotButton {
             val mPath = Environment.getExternalStorageDirectory().toString() + "/securityCameraPhotos/" + unixTime + ".jpg" //store in own folder
 
             // create bitmap screen capture
-            val v1 = androidActivity.getWindow().getDecorView().getRootView().securityCamView
+            val v1 = webview;
             v1.setDrawingCacheEnabled(true)
             val bitmap = Bitmap.createBitmap(v1.getDrawingCache())
             v1.setDrawingCacheEnabled(false)
@@ -39,13 +40,13 @@ class ScreenshotButton {
         } catch (e: Throwable) {
             // Several error may come out with file handling or DOM
             Log.e("File saving error",e.toString())
-            alertUser(androidActivity);
+            alertUser(androidActivity,webview);
         }
 
 
     }
 
-    private fun alertUser(androidActivity: Activity) {
+    private fun alertUser(androidActivity: Activity, webview: WebView) {
         AlertDialog.Builder(androidActivity)
             .setTitle("Could Not Save File")
             .setMessage("Try again?")
@@ -53,7 +54,7 @@ class ScreenshotButton {
             // Specifying a listener allows you to take an action before dismissing the dialog.
             // The dialog is automatically dismissed when a dialog button is clicked.
             .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
-                takeScreenshot(androidActivity,""); //go for another spin
+                takeScreenshot(androidActivity,webview); //go for another spin
             })
 
             // A null listener allows the button to dismiss the dialog and take no further action.
